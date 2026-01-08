@@ -4,6 +4,7 @@ import L from 'leaflet';
 import { useEffect } from 'react';
 import villageData from '../data/village-boundary.json';
 import umkmData from '../data/umkm.json';
+import Overlay from './Overlay';
 
 // Fix for default marker icons if we ever fallback, though we use custom one.
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
@@ -34,7 +35,7 @@ function FitBounds({ bounds }) {
 // Custom Icon definition using DivIcon + SVG
 const customMarkerIcon = new L.DivIcon({
   className: 'bg-transparent border-none', // Remove default leaflet square bg
-  html: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#C04A35" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full drop-shadow-lg filter"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3" fill="white"></circle></svg>`,
+  html: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FACC15" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full drop-shadow-lg filter"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3" fill="black"></circle></svg>`,
   iconSize: [40, 40],
   iconAnchor: [20, 40], // Tip of the pin at bottom center
   popupAnchor: [0, -40],
@@ -57,33 +58,37 @@ const Map = () => {
     villageCoordsLeaflet
   ];
 
-  const borderColor = '#D98E56'; 
+  const borderColor = '#FACC15'; 
   const maskOptions = {
     color: 'transparent', 
-    fillColor: '#1E293B', 
-    fillOpacity: 0.8,     
+    fillColor: '#000000', 
+    fillOpacity: 0.4,     
     interactive: false     
   };
   
   const borderOptions = {
     color: borderColor,
-    weight: 3,
+    weight: 4,
+    dashArray: '5, 10',
     fillOpacity: 0, 
     interactive: false
   };
 
   return (
-    <div className="h-full w-full rounded-lg overflow-hidden shadow-inner bg-neutralDark relative z-0">
+    <div className="h-full w-full rounded-lg overflow-hidden shadow-inner bg-slate-900 relative z-0">
+       {/* Vignette Overlay */}
+       <div className="absolute inset-0 z-[300] pointer-events-none shadow-[inset_0_0_100px_rgba(0,0,0,0.6)]"></div>
+       
        <MapContainer 
-        center={[-7.795, 110.37]} 
-        zoom={14} 
-        style={{ height: '100%', width: '100%' }}
+        center={[-7.362, 111.035]} 
+        zoom={16} 
+        style={{ height: '100%', width: '100%', filter: 'brightness(0.7) contrast(1.1)' }}
         scrollWheelZoom={true}
         className="z-0"
       >
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+          url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
         />
         
         {/* Mask and Border */}
@@ -131,6 +136,8 @@ const Map = () => {
 
         <FitBounds bounds={villageCoordsLeaflet} />
       </MapContainer>
+      
+      <Overlay />
     </div>
   );
 };

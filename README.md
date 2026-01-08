@@ -1,106 +1,119 @@
-I. Panduan Branding & Visual (Tema: "Industrial Earth")
-Karena produknya adalah Batu Bata, kita hindari warna-warna neon atau pastel. Kita gunakan warna earthy (tanah) yang dikombinasikan dengan gaya modern (Dark UI pada Peta).
+# BrickMulyo - Landing Page & Peta Persebaran UMKM
 
-1. Palet Warna (Color Palette)
-Primary Color (Merah Bata): #C04A35
+Web app landing page modern untuk pusat industri batu bata merah di **Srimulyo, Gondang, Sragen**. Proyek ini mencakup halaman promosi produk dan peta interaktif (GIS Dashboard) untuk memvisualisasikan persebaran UMKM.
 
-Kegunaan: Warna utama Marker (Pin), Tombol CTA utama (Hubungi WA), Judul penting.
+## 🚀 Fitur Utama
 
-Secondary Color (Tanah Liat/Orange Muted): #D98E56
+### 1. Modern Landing Page
+Halaman depan yang responsif dan menarik untuk meningkatkan konversi penjualan.
+- **Hero Section:** Judul impactfull dengan CTA (Call to Action) yang jelas.
+- **Showcase Produk:** Menampilkan varian bata (Press, Biasa, Expose) beserta harga.
+- **Keunggulan:** Bagian "Kenapa Memilih Kami" dengan ikon visual.
+- **Kontak Langsung:** Integrasi tombol WhatsApp dan Telepon di berbagai titik strategis.
 
-Kegunaan: Hover state, garis batas wilayah (GeoJSON stroke), icon pendukung.
+### 2. Peta Interaktif (GIS Dashboard)
+Peta persebaran UMKM dengan gaya visual "Dashboard KKN/Pemetaan Wilayah".
+- **Satellite View:** Menggunakan citra satelit (Esri World Imagery) untuk tampilan realistis.
+- **Batas Wilayah:** Polygon area **Desa Srimulyo** dengan border kuning menyala.
+- **Informasi Overlay:** Panel informasi melayang yang menampilkan Intro, Goal, dan Deskripsi proyek.
+- **Marker Interaktif:** Titik lokasi UMKM yang ketika diklik menampilkan:
+  - Foto UMKM
+  - Nama Pemilik & Alamat
+  - Tombol Chat WhatsApp (Direct Link)
+  - Tombol Navigasi (Google Maps)
 
-Neutral Dark (Charcoal/Aspal): #1E293B (Slate-800 di Tailwind)
+### 3. Manajemen Data Sederhana (No-Backend)
+Sesuai permintaan untuk "Frontend Only", data dikelola melalui file JSON statis sehingga mudah diedit tanpa database.
+- Data UMKM: `src/data/umkm.json`
+- Data Wilayah: `src/data/village-boundary.json`
 
-Kegunaan: Background peta (agar marker mencolok), teks heading.
+## 🛠️ Teknologi yang Digunakan
+- **React (Vite):** Framework frontend utama.
+- **Tailwind CSS:** Styling utility-first untuk desain cepat dan responsif.
+- **React-Leaflet:** Library peta interaktif.
+- **Lucide React:** Ikonografi modern.
 
-Neutral Light (Abu Semen): #F1F5F9
+## 📝 Changelog & Update Terakhir
 
-Kegunaan: Background panel informasi/popup, background body.
+### Localization & Map Update
+- **Lokasi:** Mengubah fokus peta dan konten dari Yogyakarta ke **Srimulyo, Gondang, Sragen**.
+- **Style Peta:** Mengganti style peta menjadi *Dark Satellite* dengan efek *Vignette* untuk meniru referensi desain.
+- **Overlay:** Menambahkan komponen `Overlay.jsx` untuk menampilkan informasi dashboard (Intro, Goal, Desc) di atas peta.
+- **Marker:** Menyesuaikan warna marker menjadi Kuning/Oranye agar kontras dengan background satelit.
+- **Data:** Mengatur data awal menampilkan 1 titik "Pabrik Bata Merah Brick Mulyo" sebagai sampel.
 
-2. Tipografi
-Font: Gunakan "Inter" atau "Poppins" (Google Fonts).
+## 💻 Cara Menjalankan
 
-Kenapa? Bersih, modern, dan sangat mudah dibaca di layar HP (karena target pengguna mungkin akses via HP).
+1. **Install Dependencies:**
+   ```bash
+   npm install
+   ```
 
-II. Roadmap Pengembangan (7 Hari - Sprint)
-Target: Website "Polosan" tapi interaktif untuk presentasi.
+2. **Jalankan Mode Development:**
+   ```bash
+   npm run dev
+   ```
 
-Hari 1: Setup & Environment
-Tech: React (Vite) + Tailwind CSS + React-Leaflet.
+3. **Build untuk Production:**
+   ```bash
+   npm run build
+   ```
 
-Task:
+---
 
-Install project.
+## 📂 Struktur File Penting
 
-Setup Tailwind config dengan warna branding di atas.
+```
+src/
+├── components/
+│   ├── Map.jsx       # Komponen Peta Utama
+│   └── Overlay.jsx   # Dashboard Info di atas Peta
+├── data/
+│   ├── umkm.json             # Edit file ini untuk menambah/mengubah data UMKM
+│   └── village-boundary.json # Koordinat batas desa
+└── App.jsx           # Halaman Utama Landing Page
+```
 
-Siapkan struktur folder: /components, /data, /assets.
+---
 
-Hari 2: Core Map & Wilayah (Fitur Utama)
-Task:
+## 📜 Original Requirements Log (Chat History)
 
-Integrasi Leaflet Map.
+[6/1, 23.09] Praditus: Wokeyy
+[6/1, 23.09] Praditus: Kira kira ada dana berapa?
+[6/1, 23.10] +62 851-1760-9645: saya ada range 300an mas bisa agak melar[18/12/2025, 09.55] Praditus: website buat informasi 1 produk gitu, kyk informasi, cara kerja, kelebihan, manfaat, sama cara pemesanan yang kalo diklik diarahin ke WA
 
-Fitur "Potongan Map": Cari koordinat batas desa (GeoJSON) di geojson.io atau openstreetmap.
-
-Masking: Buat logic agar area luar desa menjadi gelap (opacity 0.7), dan area desa terlihat terang/jelas.
-
-Styling: Terapkan warna #D98E56 untuk garis batas wilayah.
-
-Hari 3: Data Dummy (Pengganti Database/CRUD)
-Task: Buat file src/data/umkm.json.
-
-Format Data:
-
-JSON
-
-[
-  {
-    "id": 1,
-    "nama": "Batu Bata Merah Pak Joyo",
-    "pemilik": "Joyo Sudarmo",
-    "lat": -7.xxxx,
-    "lng": 110.xxxx,
-    "wa": "628xxxx",
-    "alamat": "Dusun A, RT 02",
-    "foto": "/images/bata1.jpg",
-    "desc": "Spesialis bata ekspos."
-  }
-  // Buat 5-10 data dummy agar peta terlihat ramai
-]
-Hari 4: Rendering Marker & Popup
-Task:
-
-Looping data JSON ke dalam map menjadi Marker.
-
-Gunakan Custom Icon untuk Marker (bisa pakai icon SVG sederhana warna Merah Bata #C04A35).
-
-Buat Popup/Modal Interaktif: Saat marker diklik, muncul card kecil berisi Nama & Foto sekilas.
-
-Hari 5: Detail Page / Drawer & Action Button
-Task:
-
-Perhalus UI Popup. Tambahkan tombol aksi nyata:
-
-Tombol "Chat WA": Link https://wa.me/{no_hp}?text=Saya+tertarik+batu+bata...
-
-Tombol "Navigasi": Link https://www.google.com/maps/dir/?api=1&destination={lat},{lng}
-
-Hari 6: Overlay Informasi (Sesuai Referensi)
-Task:
-
-Tambahkan elemen UI melayang (Overlay) di pojok peta.
-
-Isi: Judul Peta, Legenda (Keterangan simbol), dan Deskripsi singkat potensi desa.
-
-Pastikan overlay ini bisa di-minimize di tampilan HP agar tidak menutupi peta.
-
-Hari 7: Finishing & Deploy
-Task:
-
-Cek responsivitas (Mobile vs Desktop).
-
-Deploy ke Vercel (paling cepat & gratis untuk React).
-
-Siapkan link demo untuk diserahkan ke klien.
+untuk produk ini apakah masih ada?
+[6/1, 22.21] +62 851-1760-9645: permisi selamat malam mas Praditus, terkait ini saya masih butuh, tapi agak ada modifikasi
+[6/1, 22.24] +62 851-1760-9645: jadi kaya umkm hub, ada peta suatu daerah gitu yang nanti ada titik2 yang punya umkm, yang kalo diklik titik nya ke direct ke page yang isinya lokasi gmapsnya sama contact person yang punya umkm
+[6/1, 22.41] Praditus: Baik mas codenya pakai bahasa apa yaa?
+[6/1, 22.42] +62 851-1760-9645: preferred php mas, apa bisa ya?
+[6/1, 22.46] Praditus: Native kah?
+[6/1, 22.46] +62 851-1760-9645: laravel bisa mas
+[6/1, 22.52] +62 851-1760-9645: sama sekalian dihostingkan mas kalau bisa, untuk deadline 1 minggu-an apakah bisa mas
+[6/1, 22.59] Praditus: Cuma di modif aja kan ya?
+[6/1, 23.00] +62 851-1760-9645: kurang lebih jadi kaya gini mas
+[6/1, 23.01] Praditus: Klo pakai react gimana mas?
+[6/1, 23.01] +62 851-1760-9645: boleh mas
+[6/1, 23.02] Praditus: Bisa mas
+[6/1, 23.02] Praditus: Tapi tolong di detailin lagi mass
+[6/1, 23.02] +62 851-1760-9645: sek bentar mas saya carikan referensinya
+[6/1, 23.11] Praditus: Di 500 gimana mas?
+[6/1, 23.12] +62 851-1760-9645: bisa mas
+[6/1, 23.13] Praditus: Wokeyy mas bisa
+[6/1, 23.13] Praditus: FE doang kan?
+[6/1, 23.13] +62 851-1760-9645: yess
+[6/1, 23.14] Praditus: Wokeyy mas bisa
+[6/1, 23.14] +62 851-1760-9645: kedepannya mungkin saya nanya follow up progress gapapa kan mas
+[6/1, 23.14] +62 851-1760-9645: sama ini perlu dp dulu apa pas akhir aja nanti
+[6/1, 23.20] Praditus: Nanti aja mas
+[6/1, 23.20] +62 851-1760-9645: okesiap mass
+[6/1, 23.24] Praditus: Mas minta data UMKM nya dong
+[6/1, 23.25] +62 851-1760-9645: nah itu mas data nya belum ada, cuma itu nanti menyusul (hopefully saya sendiri yang masukin ke situ)
+[6/1, 23.25] +62 851-1760-9645: kalo dibikin placeholder dulu gmn mas
+[6/1, 23.25] +62 851-1760-9645: sama kaya crud buat nambah gitu
+[6/1, 23.26] Praditus: bisa bisa mas, sama boleh tau mau UMKM Daerah mana biar saya sesuaikan
+[6/1, 23.26] +62 851-1760-9645: untuk daerahnya itu terbatas sih mas di daerah Srimulyo, Gondang, Sragen, Jawa Tengah
+[6/1, 23.33] +62 851-1760-9645: nah gini mas, jadi saya minta deadline 1 minggu itu ada presentasi projek tahap 1, nah itu rencananya saya mau polosannya dulu, baru setelah itu dilanjutin ditambahin data umkmnya mass
+[6/1, 23.34] +62 851-1760-9645: untuk produk umkmnya itu cuma 1 jenis mas, batu bata aja
+[6/1, 23.34] +62 851-1760-9645: color pallete ngikut masnya aja yang lebih pahamm
+website buat informasi 1 produk gitu, kyk informasi, cara kerja, kelebihan, manfaat, sama cara pemesanan yang kalo diklik diarahin ke WA
