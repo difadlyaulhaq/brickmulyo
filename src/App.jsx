@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { MapPin, Phone, Package, Truck, Shield, Star, Award, ChevronRight, Check } from 'lucide-react';
 import Map from './components/Map';
+import Navbar from './components/Navbar';
+import OrderFlow from './components/OrderFlow';
+import OrderPage from './components/OrderPage';
 
 export default function BrickMulyoLanding() {
   const [scrollY, setScrollY] = useState(0);
   const [showFloating, setShowFloating] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [view, setView] = useState('landing');
   
   useEffect(() => {
     const handleScroll = () => {
@@ -15,13 +20,32 @@ export default function BrickMulyoLanding() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const products = [
-    { name: 'Bata Merah Press', price: 'Rp 850/biji', desc: 'Kualitas premium, tahan lama' },
-    { name: 'Bata Merah Biasa', price: 'Rp 650/biji', desc: 'Standar konstruksi umum' },
-    { name: 'Bata Ringan', price: 'Rp 9.500/biji', desc: 'Ringan & cepat pasang' },
-    { name: 'Bata Expose', price: 'Rp 1.200/biji', desc: 'Estetik tampak natural' },
-  ];
-
+    const products = [
+      {
+        name: 'Bata Merah Press',
+        price: 'Rp 850/biji',
+        desc: 'Kualitas premium, permukaan halus, presisi tinggi. Cocok untuk dinding ekspos.',
+        image: '/Batu-bata-background.png'
+      },
+      {
+        name: 'Bata Merah Biasa',
+        price: 'Rp 650/biji',
+        desc: 'Standar konstruksi umum, kuat dan ekonomis untuk dinding plesteran.',
+        image: '/Batu-bata-background.png'
+      },
+      {
+        name: 'Bata Ringan',
+        price: 'Rp 9.500/biji',
+        desc: 'Bobot ringan, pengerjaan cepat, dan insulasi panas yang baik.',
+        image: '/Batu-bata-background.png'
+      },
+      {
+        name: 'Bata Expose',
+        price: 'Rp 1.200/biji',
+        desc: 'Estetik tampak natural dengan tekstur unik untuk desain industrial.',
+        image: '/Batu-bata-background.png'
+      },
+    ];
   const features = [
     { icon: Shield, title: 'Kualitas Terjamin', desc: 'Bata dari tanah liat pilihan' },
     { icon: Truck, title: 'Antar Gratis', desc: 'Area Sragen & sekitar' },
@@ -29,15 +53,19 @@ export default function BrickMulyoLanding() {
     { icon: Star, title: 'Harga Bersaing', desc: 'Langsung dari pabrik' },
   ];
 
+  if (view === 'order' && selectedProduct) {
+    return <OrderPage product={selectedProduct} onBack={() => setView('landing')} />;
+  }
+
   return (
     <div className="min-h-screen bg-slate-50 font-sans overflow-x-hidden">
       {/* Animated Brick Background Pattern */}
-      <div className="fixed inset-0 opacity-5 pointer-events-none">
+      <div className="fixed inset-0 opacity-[0.2] pointer-events-none">
         <div 
-          className="absolute inset-0 animate-bg-scroll-slow"
+          className="absolute inset-0 animate-bg-scroll-horizontal"
           style={{
-            backgroundImage: `url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23C04A35" fill-opacity="0.4"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')`,
-            backgroundSize: '60px 60px',
+            backgroundImage: `url('/Batu-bata-background.png')`,
+            backgroundSize: '600px auto',
             backgroundRepeat: 'repeat',
           }}
         />
@@ -79,26 +107,7 @@ export default function BrickMulyoLanding() {
           </a>
         </div>
       )}
-      {/* Header */}
-      <header className="bg-slate-800 text-white py-6 sticky top-0 z-50 shadow-lg">
-        <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center">
-            <div>
-              <h1 className="text-3xl font-bold text-orange-400">Brick Mulyo</h1>
-              <p className="text-sm text-slate-300">Bata Berkualitas Langsung dari Pabrik</p>
-            </div>
-            <a 
-              href="https://wa.me/62812345678?text=Halo%20Brick%20Mulyo,%20saya%20mau%20pesan%20bata"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-red-600 hover:bg-red-700 px-6 py-3 rounded-lg font-semibold flex items-center gap-2 transition-all"
-            >
-              <Phone size={20} />
-              Hubungi Kami
-            </a>
-          </div>
-        </div>
-      </header>
+      <Navbar />
 
       {/* Hero Section */}
       <section className="relative py-12 lg:py-20 px-4 overflow-hidden">
@@ -176,7 +185,7 @@ export default function BrickMulyoLanding() {
               <div className="relative">
                 <div className="absolute -inset-4 bg-gradient-to-br from-red-600 to-slate-900 rounded-3xl blur-3xl opacity-20 animate-pulse"></div>
                 <img 
-                  src="https://images.unsplash.com/photo-1590859808308-3d2d9c515b1a?w=600&h=600&fit=crop" 
+                  src="/Batu-bata-hero.png" 
                   alt="Bata Merah Berkualitas"
                   className="relative w-full h-auto rounded-3xl shadow-2xl"
                 />
@@ -312,21 +321,30 @@ export default function BrickMulyoLanding() {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mt-16">
             {products.map((product, idx) => (
               <div 
                 key={idx} 
-                className="relative bg-white rounded-3xl shadow-xl hover:shadow-2xl transition transform hover:-translate-y-2 flex flex-col border-2 border-slate-100 overflow-hidden group"
+                className="relative bg-white rounded-3xl shadow-xl hover:shadow-2xl transition transform hover:-translate-y-2 flex flex-col border-2 border-slate-100 group"
               >
                 {idx === 0 && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg whitespace-nowrap z-10">
+                  <div className="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-2 rounded-full text-sm font-bold shadow-xl whitespace-nowrap z-30 animate-bounce-slow">
                     🔥 TERLARIS
                   </div>
                 )}
+                <div className="h-48 overflow-hidden relative rounded-t-[22px]">
+                   <div className="absolute inset-0 bg-slate-200 animate-pulse"></div>
+                   <img 
+                    src={product.image} 
+                    alt={product.name}
+                    className="w-full h-full object-cover transform group-hover:scale-110 transition duration-700 relative z-10"
+                   />
+                   <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm p-2 rounded-xl shadow-lg z-20">
+                      <Package size={20} className="text-orange-600" />
+                   </div>
+                </div>
+                
                 <div className="p-6 lg:p-8 flex-1 flex flex-col">
-                  <div className="w-16 h-16 bg-gradient-to-br from-orange-400 to-orange-600 rounded-2xl flex items-center justify-center mb-6 transform group-hover:rotate-12 transition">
-                    <Package size={32} className="text-white" />
-                  </div>
                   <h4 className="text-xl lg:text-2xl font-bold text-slate-800 mb-2">{product.name}</h4>
                   <p className="text-3xl lg:text-4xl font-bold text-red-600 mb-3">{product.price}</p>
                   <p className="text-slate-600 text-sm mb-6 flex-1">{product.desc}</p>
@@ -342,18 +360,19 @@ export default function BrickMulyoLanding() {
                     </div>
                   </div>
 
-                  <a 
-                    href="https://wa.me/62812345678?text=Halo%20BrickMulyo,%20saya%20mau%20pesan"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`w-full py-3 rounded-full font-bold transition transform hover:scale-105 text-center no-underline ${
+                  <button 
+                    onClick={() => {
+                      setSelectedProduct(product);
+                      setView('order');
+                    }}
+                    className={`w-full py-3 rounded-full font-bold transition transform hover:scale-105 text-center no-underline cursor-pointer ${
                       idx === 0
                         ? 'bg-gradient-to-r from-red-600 to-red-700 text-white shadow-lg hover:shadow-xl'
                         : 'bg-red-50 text-red-800 hover:bg-red-100 border border-red-200'
                     }`}
                   >
                     Pesan Sekarang
-                  </a>
+                  </button>
                 </div>
               </div>
             ))}
@@ -384,66 +403,165 @@ export default function BrickMulyoLanding() {
         </div>
       </section>
 
-      {/* Map Coverage */}
-      <section id="map" className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <h3 className="text-3xl font-bold text-center text-slate-800 mb-4">Jangkauan Pengiriman</h3>
-          <p className="text-center text-slate-600 mb-12">Kami siap mengantar pesanan Anda ke seluruh wilayah berikut</p>
+      {/* Ordering Steps Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-5xl font-bold text-slate-800 mb-4">Cara Pemesanan</h2>
+            <p className="text-slate-600 max-w-2xl mx-auto">Proses mudah dan cepat untuk mendapatkan bata berkualitas tinggi</p>
+          </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Real Map Component */}
-            <div className="h-[500px] w-full rounded-lg overflow-hidden shadow-xl border-4 border-slate-800 relative z-0">
-               <Map />
-            </div>
-
-            {/* Coverage Details */}
-            <div className="space-y-4">
-              <div className="bg-slate-100 p-6 rounded-lg border-l-4 border-red-600">
-                <h4 className="text-xl font-bold text-slate-800 mb-3">Area Layanan Utama</h4>
-                <ul className="space-y-2 text-slate-700">
-                  <li className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-red-600 rounded-full"></div>
-                    Kecamatan Gondang (Srimulyo & Sekitar)
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-red-600 rounded-full"></div>
-                    Kecamatan Sambungmacan
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-red-600 rounded-full"></div>
-                    Kecamatan Ngrampal
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-red-600 rounded-full"></div>
-                    Wilayah Kota Sragen
-                  </li>
-                </ul>
-              </div>
-
-              <div className="bg-orange-50 p-6 rounded-lg border-l-4 border-orange-500">
-                <h4 className="text-xl font-bold text-slate-800 mb-3">Syarat Pengiriman Gratis</h4>
-                <div className="space-y-2 text-slate-700">
-                  <p>✓ Minimal pembelian 1000 biji (1 truk)</p>
-                  <p>✓ Akses jalan bisa dilalui truk</p>
-                  <p>✓ Waktu pengiriman: Senin - Sabtu</p>
+          <div className="grid md:grid-cols-4 gap-8">
+            {[
+              { step: '01', title: 'Pilih Produk', desc: 'Tentukan jenis dan jumlah bata yang Anda butuhkan sesuai proyek.' },
+              { step: '02', title: 'Konsultasi WA', desc: 'Hubungi admin kami untuk cek ketersediaan stok dan jadwal kirim.' },
+              { step: '03', title: 'Konfirmasi Lokasi', desc: 'Kirimkan lokasi pengiriman untuk menghitung estimasi waktu tiba.' },
+              { step: '04', title: 'Bata Dikirim', desc: 'Pesanan akan diantar menggunakan truk armada kami sendiri.' },
+            ].map((s, i) => (
+              <div key={i} className="relative p-8 rounded-3xl bg-slate-50 border border-slate-100 group hover:bg-red-600 transition duration-500 overflow-hidden">
+                <span className="text-6xl font-black text-slate-200 absolute top-4 right-4 group-hover:text-red-500/50 transition duration-500">{s.step}</span>
+                <div className="relative z-10 pt-12">
+                  <h4 className="text-xl font-bold text-slate-800 mb-3 group-hover:text-white transition duration-500">{s.title}</h4>
+                  <p className="text-sm text-slate-600 group-hover:text-red-50 transition duration-500 leading-relaxed">{s.desc}</p>
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <h4 className="text-xl font-bold text-slate-800 mb-3">Luar Area?</h4>
-                <p className="text-slate-600 mb-4">
-                  Kami tetap bisa melayani pengiriman ke luar area dengan biaya tambahan. Hubungi kami untuk informasi lebih lanjut.
-                </p>
-                <a 
-                  href="https://wa.me/62812345678?text=Halo%20Brick%20Mulyo,%20saya%20mau%20tanya%20ongkir"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg font-semibold inline-flex items-center gap-2 transition-all"
-                >
-                  <Phone size={18} />
-                  Tanya Ongkir
-                </a>
+      {/* Gallery Section */}
+      <section className="py-16 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4">
+           <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-5xl font-bold text-slate-800 mb-4">Galeri Aktivitas</h2>
+            <p className="text-slate-600 max-w-2xl mx-auto">
+              Intip langsung proses produksi dan pengiriman kami yang menjamin kualitas terbaik sampai ke tangan Anda
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+             <div className="col-span-2 row-span-2 relative rounded-3xl overflow-hidden group h-96 shadow-lg">
+                <img 
+                  src="/Batu-bata-hero.png" 
+                  alt="Construction Work" 
+                  className="w-full h-full object-cover transform group-hover:scale-110 transition duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                   <h4 className="text-white font-black text-2xl mb-2 uppercase tracking-tighter">Implementasi Proyek</h4>
+                   <p className="text-white/80 text-sm">Bata kami dipercaya untuk berbagai proyek perumahan dan komersial berskala besar.</p>
+                </div>
+             </div>
+             <div className="relative rounded-3xl overflow-hidden group h-44 shadow-md">
+                <img 
+                  src="/Batu-bata-hero.png" 
+                  alt="Brick Quality" 
+                  className="w-full h-full object-cover transform group-hover:scale-110 transition duration-700"
+                />
+                <div className="absolute inset-0 bg-red-600/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                   <span className="text-white font-bold text-xs uppercase tracking-widest">Quality Control</span>
+                </div>
+             </div>
+             <div className="relative rounded-3xl overflow-hidden group h-44 shadow-md">
+                <img 
+                  src="/Batu-bata-hero.png" 
+                  alt="Production Line" 
+                  className="w-full h-full object-cover transform group-hover:scale-110 transition duration-700"
+                />
+                <div className="absolute inset-0 bg-red-600/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                   <span className="text-white font-bold text-xs uppercase tracking-widest">Produksi Rutin</span>
+                </div>
+             </div>
+             <div className="relative rounded-3xl overflow-hidden group h-44 shadow-md">
+                <img 
+                  src="/Batu-bata-hero.png" 
+                  alt="Truck Delivery" 
+                  className="w-full h-full object-cover transform group-hover:scale-110 transition duration-700"
+                />
+                <div className="absolute inset-0 bg-red-600/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                   <span className="text-white font-bold text-xs uppercase tracking-widest">Siap Kirim</span>
+                </div>
+             </div>
+             <div className="relative rounded-3xl overflow-hidden group h-44 shadow-md">
+                <img 
+                  src="/Batu-bata-hero.png" 
+                  alt="Clay Source" 
+                  className="w-full h-full object-cover transform group-hover:scale-110 transition duration-700"
+                />
+                <div className="absolute inset-0 bg-red-600/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                   <span className="text-white font-bold text-xs uppercase tracking-widest">Bahan Baku</span>
+                </div>
+             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Map Coverage Dashboard */}
+      <section id="map" className="py-16 bg-slate-900 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h3 className="text-3xl lg:text-5xl font-bold text-white mb-4">Peta Digital UMKM</h3>
+            <p className="text-slate-400 max-w-2xl mx-auto">Visualisasi sebaran lokasi pengrajin batu bata merah di wilayah Desa Srimulyo</p>
+          </div>
+          
+          {/* Main Map Container */}
+          <div className="h-[600px] md:h-[700px] w-full rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] border-4 border-slate-800 relative z-0 mb-12">
+             <Map />
+          </div>
+
+          {/* Coverage Details Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-slate-800 p-6 rounded-2xl border border-slate-700 shadow-xl">
+              <h4 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                <MapPin className="text-red-500" />
+                Area Layanan Utama
+              </h4>
+              <ul className="space-y-3 text-slate-300 text-sm">
+                <li className="flex items-center gap-3">
+                  <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full"></div>
+                  Kecamatan Gondang (Srimulyo & Sekitar)
+                </li>
+                <li className="flex items-center gap-3">
+                  <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full"></div>
+                  Kecamatan Sambungmacan
+                </li>
+                <li className="flex items-center gap-3">
+                  <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full"></div>
+                  Kecamatan Ngrampal
+                </li>
+                <li className="flex items-center gap-3">
+                  <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full"></div>
+                  Wilayah Kota Sragen
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-slate-800 p-6 rounded-2xl border border-slate-700 shadow-xl">
+              <h4 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                <Truck className="text-red-500" />
+                Syarat Pengiriman Gratis
+              </h4>
+              <div className="space-y-3 text-slate-300 text-sm">
+                <p>✓ Minimal pembelian 1000 biji (1 truk)</p>
+                <p>✓ Akses jalan bisa dilalui truk</p>
+                <p>✓ Waktu pengiriman: Senin - Sabtu</p>
               </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-orange-600 to-red-700 p-6 rounded-2xl shadow-xl text-white">
+              <h4 className="text-xl font-bold mb-4">Luar Area Sragen?</h4>
+              <p className="text-sm text-red-100 mb-6">
+                Kami tetap bisa melayani pengiriman ke luar area dengan biaya tambahan yang kompetitif.
+              </p>
+              <a 
+                href="https://wa.me/62812345678?text=Halo%20Brick%20Mulyo,%20saya%20mau%20tanya%20ongkir"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white text-red-700 px-6 py-3 rounded-full font-bold inline-flex items-center gap-2 transition-transform hover:scale-105"
+              >
+                <Phone size={18} />
+                Tanya Ongkir
+              </a>
             </div>
           </div>
         </div>
@@ -509,13 +627,13 @@ export default function BrickMulyoLanding() {
 
       {/* Custom CSS for animations */}
       <style jsx>{`
-        @keyframes bg-scroll-slow {
+        @keyframes bg-scroll-horizontal {
           from { background-position: 0 0; }
-          to { background-position: 0 -300px; }
+          to { background-position: 600px 0; }
         }
 
-        .animate-bg-scroll-slow {
-          animation: bg-scroll-slow 20s linear infinite;
+        .animate-bg-scroll-horizontal {
+          animation: bg-scroll-horizontal 40s linear infinite;
         }
 
         @keyframes slide-right {
@@ -540,6 +658,15 @@ export default function BrickMulyoLanding() {
         
         .animate-slide-down {
           animation: slide-down 0.3s ease-out;
+        }
+
+        @keyframes bounce-slow {
+          0%, 100% { transform: translate(-50%, 0); }
+          50% { transform: translate(-50%, -5px); }
+        }
+
+        .animate-bounce-slow {
+          animation: bounce-slow 3s ease-in-out infinite;
         }
       `}</style>
     </div>
