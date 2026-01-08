@@ -1,0 +1,23 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Desa BrickMulyo"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [110.360, -7.800],
+            [110.380, -7.800],
+            [110.380, -7.790],
+            [110.360, -7.790],
+            [110.360, -7.800]
+          ]
+        ]
+      }
+    }
+  ]
+}

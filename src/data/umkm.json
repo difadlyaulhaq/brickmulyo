@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "nama": "Batu Bata Merah Pak Joyo",
+    "pemilik": "Joyo Sudarmo",
+    "lat": -7.792,
+    "lng": 110.365,
+    "wa": "6281234567890",
+    "alamat": "Dusun A, RT 02",
+    "foto": "https://placehold.co/400x300/C04A35/white?text=Bata+Pak+Joyo",
+    "desc": "Spesialis bata ekspos kualitas super, pembakaran kayu."
+  },
+  {
+    "id": 2,
+    "nama": "Sumber Rejeki Brick",
+    "pemilik": "H. Mulyono",
+    "lat": -7.798,
+    "lng": 110.375,
+    "wa": "6281234567891",
+    "alamat": "Jl. Raya Desa No. 45",
+    "foto": "https://placehold.co/400x300/C04A35/white?text=Sumber+Rejeki",
+    "desc": "Menyediakan bata merah biasa dan bata tempel."
+  },
+  {
+    "id": 3,
+    "nama": "UD. Bata Perkasa",
+    "pemilik": "Budi Santoso",
+    "lat": -7.794,
+    "lng": 110.372,
+    "wa": "6281234567892",
+    "alamat": "Dusun B, RW 05",
+    "foto": "https://placehold.co/400x300/C04A35/white?text=Bata+Perkasa",
+    "desc": "Harga grosir, siap antar sampai lokasi proyek."
+  },
+  {
+    "id": 4,
+    "nama": "Bata Pres Mas Tono",
+    "pemilik": "Hartono",
+    "lat": -7.796,
+    "lng": 110.368,
+    "wa": "6281234567893",
+    "alamat": "Gg. Melati, RT 01",
+    "foto": "https://placehold.co/400x300/C04A35/white?text=Bata+Mas+Tono",
+    "desc": "Teknologi mesin pres, ukuran presisi."
+  },
+  {
+    "id": 5,
+    "nama": "Langgeng Jaya",
+    "pemilik": "Sutrisno",
+    "lat": -7.793,
+    "lng": 110.378,
+    "wa": "6281234567894",
+    "alamat": "Dusun C, Depan Balai Desa",
+    "foto": "https://placehold.co/400x300/C04A35/white?text=Langgeng+Jaya",
+    "desc": "Bata merah murah meriah, kualitas standar."
+  }
+]

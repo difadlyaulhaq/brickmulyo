@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #C04A35;
+  --color-secondary: #D98E56;
+  --color-neutralDark: #1E293B;
+  --color-neutralLight: #F1F5F9;
+
+  --font-sans: "Inter", "Poppins", sans-serif;
+}
+
+/* Leaflet CSS Override (if needed to fix z-index issues) */
+.leaflet-pane {
+  z-index: 10;
+}
+.leaflet-top, .leaflet-bottom {
+  z-index: 20;
+}
