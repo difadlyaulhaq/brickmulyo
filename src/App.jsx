@@ -6,14 +6,12 @@ import OrderFlow from './components/OrderFlow';
 import OrderPage from './components/OrderPage';
 
 export default function BrickMulyoLanding() {
-  const [scrollY, setScrollY] = useState(0);
   const [showFloating, setShowFloating] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [view, setView] = useState('landing');
   
   useEffect(() => {
     const handleScroll = () => {
-      setScrollY(window.scrollY);
       setShowFloating(window.scrollY > 500);
     };
     window.addEventListener('scroll', handleScroll);
@@ -73,23 +71,23 @@ export default function BrickMulyoLanding() {
 
       {/* Floating Action Buttons */}
       {showFloating && (
-        <div className="fixed bottom-8 right-8 z-40 flex flex-col gap-3">
+        <div className="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-40 flex flex-col gap-3">
           <button 
             onClick={() => document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })}
-            className="group relative bg-gradient-to-r from-red-600 to-red-700 text-white w-14 h-14 rounded-full shadow-2xl hover:shadow-red-500/50 transition transform hover:scale-110 flex items-center justify-center"
+            className="group relative bg-gradient-to-r from-red-600 to-red-700 text-white w-12 h-12 md:w-14 md:h-14 rounded-full shadow-2xl hover:shadow-red-500/50 transition transform hover:scale-110 flex items-center justify-center"
           >
-            <Package size={24} />
-            <span className="absolute right-16 bg-slate-800 text-white px-4 py-2 rounded-lg text-sm font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition pointer-events-none">
+            <Package size={20} className="md:w-6 md:h-6" />
+            <span className="absolute right-14 md:right-16 bg-slate-800 text-white px-3 py-1.5 md:px-4 md:py-2 rounded-lg text-xs md:text-sm font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition pointer-events-none">
               Lihat Produk
             </span>
           </button>
           
           <button 
             onClick={() => document.getElementById('map')?.scrollIntoView({ behavior: 'smooth' })}
-            className="group relative bg-gradient-to-r from-orange-500 to-orange-600 text-white w-14 h-14 rounded-full shadow-2xl hover:shadow-orange-500/50 transition transform hover:scale-110 flex items-center justify-center"
+            className="group relative bg-gradient-to-r from-orange-500 to-orange-600 text-white w-12 h-12 md:w-14 md:h-14 rounded-full shadow-2xl hover:shadow-orange-500/50 transition transform hover:scale-110 flex items-center justify-center"
           >
-            <MapPin size={24} />
-            <span className="absolute right-16 bg-slate-800 text-white px-4 py-2 rounded-lg text-sm font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition pointer-events-none">
+            <MapPin size={20} className="md:w-6 md:h-6" />
+            <span className="absolute right-14 md:right-16 bg-slate-800 text-white px-3 py-1.5 md:px-4 md:py-2 rounded-lg text-xs md:text-sm font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition pointer-events-none">
               Cek Area
             </span>
           </button>
@@ -98,10 +96,10 @@ export default function BrickMulyoLanding() {
             href="https://wa.me/62812345678?text=Halo%20BrickMulyo,%20saya%20mau%20pesan%20bata"
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative bg-gradient-to-r from-green-600 to-green-700 text-white w-14 h-14 rounded-full shadow-2xl hover:shadow-green-500/50 transition transform hover:scale-110 flex items-center justify-center animate-pulse"
+            className="group relative bg-gradient-to-r from-green-600 to-green-700 text-white w-12 h-12 md:w-14 md:h-14 rounded-full shadow-2xl hover:shadow-green-500/50 transition transform hover:scale-110 flex items-center justify-center animate-pulse"
           >
-            <Phone size={24} />
-            <span className="absolute right-16 bg-slate-800 text-white px-4 py-2 rounded-lg text-sm font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition pointer-events-none">
+            <Phone size={20} className="md:w-6 md:h-6" />
+            <span className="absolute right-14 md:right-16 bg-slate-800 text-white px-3 py-1.5 md:px-4 md:py-2 rounded-lg text-xs md:text-sm font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition pointer-events-none">
               Chat WA
             </span>
           </a>
@@ -164,18 +162,18 @@ export default function BrickMulyoLanding() {
               </div>
 
               {/* Quick Stats */}
-              <div className="grid grid-cols-3 gap-4 pt-8">
+              <div className="grid grid-cols-3 gap-2 sm:gap-4 pt-8">
                 <div className="text-center">
-                  <p className="text-2xl lg:text-3xl font-bold text-red-600">15+</p>
-                  <p className="text-xs lg:text-sm text-slate-600">Tahun Berpengalaman</p>
+                  <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-red-600">15+</p>
+                  <p className="text-[10px] sm:text-xs lg:text-sm text-slate-600">Tahun Berpengalaman</p>
                 </div>
                 <div className="text-center">
-                  <p className="text-2xl lg:text-3xl font-bold text-red-600">1000+</p>
-                  <p className="text-xs lg:text-sm text-slate-600">Proyek Selesai</p>
+                  <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-red-600">1000+</p>
+                  <p className="text-[10px] sm:text-xs lg:text-sm text-slate-600">Proyek Selesai</p>
                 </div>
                 <div className="text-center">
-                  <p className="text-2xl lg:text-3xl font-bold text-red-600">99%</p>
-                  <p className="text-xs lg:text-sm text-slate-600">Kepuasan Pelanggan</p>
+                  <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-red-600">99%</p>
+                  <p className="text-[10px] sm:text-xs lg:text-sm text-slate-600">Kepuasan Pelanggan</p>
                 </div>
               </div>
             </div>
@@ -505,7 +503,7 @@ export default function BrickMulyoLanding() {
           </div>
           
           {/* Main Map Container */}
-          <div className="h-[600px] md:h-[700px] w-full rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] border-4 border-slate-800 relative z-0 mb-12">
+          <div className="h-[400px] sm:h-[500px] md:h-[700px] w-full rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] border-4 border-slate-800 relative z-0 mb-12">
              <Map />
           </div>
 

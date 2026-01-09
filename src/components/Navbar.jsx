@@ -50,17 +50,17 @@ const Navbar = () => {
           <div className="flex justify-between items-center">
             {/* Logo Section */}
             <div 
-              className="flex items-center gap-3 cursor-pointer group" 
+              className="flex items-center gap-2 md:gap-3 cursor-pointer group" 
               onClick={() => scrollToSection('home')}
             >
-              <div className="relative w-10 h-10 bg-gradient-to-br from-red-600 to-orange-600 rounded-lg flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300 shadow-lg border border-white/10">
-                <span className="text-white font-black text-xl">B</span>
+              <div className="relative w-8 h-8 md:w-10 md:h-10 bg-gradient-to-br from-red-600 to-orange-600 rounded-lg flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300 shadow-lg border border-white/10">
+                <span className="text-white font-black text-lg md:text-xl">B</span>
               </div>
               <div>
-                <h1 className={`text-2xl font-black tracking-tight transition-colors duration-300 ${isScrolled ? 'text-white' : 'text-slate-800'}`}>
+                <h1 className={`text-xl md:text-2xl font-black tracking-tight transition-colors duration-300 ${isScrolled ? 'text-white' : 'text-slate-800'}`}>
                   Brick<span className="text-red-600">Mulyo</span>
                 </h1>
-                <p className={`text-[10px] font-medium tracking-widest uppercase transition-colors duration-300 ${isScrolled ? 'text-slate-400' : 'text-slate-600'}`}>
+                <p className={`text-[9px] md:text-[10px] font-medium tracking-widest uppercase transition-colors duration-300 ${isScrolled ? 'text-slate-400' : 'text-slate-600'}`}>
                   Pabrik Bata Sragen
                 </p>
               </div>

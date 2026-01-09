@@ -104,7 +104,7 @@ Mohon info ketersediaan dan pembayaran. Terima kasih.`;
   if (!product) return null;
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans pb-20">
+    <div className="min-h-screen bg-slate-50 font-sans pb-32 lg:pb-20">
       {/* Header / Navbar Replacement */}
       <div className="bg-white sticky top-0 z-50 shadow-sm border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center gap-4">
@@ -350,6 +350,22 @@ Mohon info ketersediaan dan pembayaran. Terima kasih.`;
           </div>
         </div>
 
+      </div>
+      {/* Mobile Fixed Bottom Bar */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 p-4 lg:hidden z-40 shadow-[0_-5px_20px_rgba(0,0,0,0.1)]">
+        <div className="flex items-center justify-between gap-4 max-w-7xl mx-auto">
+          <div>
+            <p className="text-xs text-slate-500 font-medium">Total Estimasi</p>
+            <p className="text-xl font-black text-red-600 leading-none">{formatCurrency(grandTotal)}</p>
+          </div>
+          <button 
+            onClick={handleSubmit}
+            className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-bold shadow-lg flex items-center gap-2 text-sm"
+          >
+            <Phone size={18} />
+            Pesan Sekarang
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -26,7 +26,9 @@ function FitBounds({ bounds }) {
   const map = useMap();
   useEffect(() => {
     if (bounds) {
-      map.fitBounds(bounds, { padding: [50, 50] });
+      const isMobile = window.innerWidth < 768;
+      const padding = isMobile ? [20, 20] : [50, 50];
+      map.fitBounds(bounds, { padding: padding });
     }
   }, [bounds, map]);
   return null;
@@ -36,12 +38,12 @@ function FitBounds({ bounds }) {
 const customMarkerIcon = new L.DivIcon({
   className: 'bg-transparent border-none',
   html: `<div class="relative flex items-center justify-center">
-          <div class="absolute w-10 h-10 bg-yellow-400/20 rounded-full animate-ping"></div>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FACC15" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 drop-shadow-[0_0_10px_rgba(250,204,21,0.5)]"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3" fill="black"></circle></svg>
+          <div class="absolute w-8 h-8 md:w-10 md:h-10 bg-yellow-400/20 rounded-full animate-ping"></div>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FACC15" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 md:w-10 md:h-10 drop-shadow-[0_0_10px_rgba(250,204,21,0.5)]"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3" fill="black"></circle></svg>
         </div>`,
-  iconSize: [40, 40],
-  iconAnchor: [20, 40],
-  popupAnchor: [0, -40],
+  iconSize: [32, 32],
+  iconAnchor: [16, 32],
+  popupAnchor: [0, -32],
 });
 
 const Map = () => {
@@ -86,7 +88,9 @@ const Map = () => {
         center={[-7.362, 111.035]} 
         zoom={16} 
         style={{ height: '100%', width: '100%', filter: 'brightness(0.7) contrast(1.1)' }}
-        scrollWheelZoom={true}
+        scrollWheelZoom={false}
+        dragging={true}
+        tap={false}
         className="z-0"
       >
         <TileLayer
@@ -106,8 +110,8 @@ const Map = () => {
             icon={customMarkerIcon}
           >
             <Popup className="custom-popup font-sans">
-              <div className="min-w-[240px]">
-                <div className="relative h-32 w-full mb-3 overflow-hidden rounded-md shadow-sm">
+              <div className="min-w-[200px] sm:min-w-[240px]">
+                <div className="relative h-24 sm:h-32 w-full mb-3 overflow-hidden rounded-md shadow-sm">
                    <img src={umkm.foto} alt={umkm.nama} className="w-full h-full object-cover" />
                 </div>
                 <h3 className="font-bold text-neutralDark text-base leading-tight mb-1">{umkm.nama}</h3>

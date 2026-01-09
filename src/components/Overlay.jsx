@@ -8,7 +8,7 @@ const Overlay = () => {
       <div className="w-full flex flex-col items-center text-center space-y-2">
         {/* Main Title */}
         <div className="relative inline-block mt-4">
-          <h1 className="text-3xl md:text-5xl font-black text-yellow-400 tracking-tighter uppercase drop-shadow-[0_4px_4px_rgba(0,0,0,1)]">
+          <h1 className="text-2xl md:text-5xl font-black text-yellow-400 tracking-tighter uppercase drop-shadow-[0_4px_4px_rgba(0,0,0,1)]">
             Peta Persebaran UMKM
           </h1>
           <div className="h-1 w-full bg-yellow-400 mt-1 shadow-[0_2px_10px_rgba(250,204,21,0.5)]"></div>
@@ -20,7 +20,7 @@ const Overlay = () => {
       </div>
 
       {/* --- MIDDLE SECTION: INFORMATION BOXES --- */}
-      <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-8 items-center py-6">
+      <div className="hidden md:grid flex-1 grid-cols-1 md:grid-cols-2 gap-8 items-center py-6">
         
         {/* Left Column */}
         <div className="space-y-6 flex flex-col justify-center">
@@ -63,6 +63,15 @@ const Overlay = () => {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* --- MOBILE ONLY: COMPACT INFO --- */}
+      <div className="md:hidden absolute bottom-20 left-4 right-4 pointer-events-none">
+        <div className="bg-black/60 backdrop-blur-sm p-3 rounded-lg border-l-4 border-yellow-400 pointer-events-auto">
+          <p className="text-[10px] text-white leading-tight">
+            <span className="font-bold text-yellow-400">INFO:</span> Peta lokasi pengrajin bata Desa Srimulyo. Klik marker untuk detail.
+          </p>
         </div>
       </div>
 
