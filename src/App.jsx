@@ -108,7 +108,7 @@ export default function BrickMulyoLanding() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative py-12 lg:py-20 px-4 overflow-hidden">
+      <section className="relative pt-28 pb-12 lg:pt-32 lg:pb-20 px-4 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div 
             className="absolute inset-0 animate-slide-right"
