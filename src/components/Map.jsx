@@ -19,7 +19,16 @@ L.Icon.Default.mergeOptions({
 });
 
 // Helper to swap [lng, lat] to [lat, lng] for Leaflet
-const swapCoords = (coords) => coords.map(([lng, lat]) => [lat, lng]);
+// Accepts either a single ring ([[lng,lat],...]) or an array of rings ([[[lng,lat],...], ...])
+const swapCoords = (coords) => {
+  if (!coords || coords.length === 0) return [];
+  // If first item is a number pair -> single ring
+  if (Array.isArray(coords[0]) && typeof coords[0][0] === 'number') {
+    return coords.map(([lng, lat]) => [lat, lng]);
+  }
+  // Otherwise assume array of rings
+  return coords.map(ring => (Array.isArray(ring) ? ring.map(([lng, lat]) => [lat, lng]) : []));
+};
 
 // Compute 2D convex hull (Andrew's monotone chain) for points [[lat,lng],...]
 const convexHull = (points) => {
@@ -46,10 +55,24 @@ const convexHull = (points) => {
 function FitBounds({ bounds }) {
   const map = useMap();
   useEffect(() => {
-    if (bounds) {
+    if (bounds && bounds.length > 0) {
       const isMobile = window.innerWidth < 768;
       const padding = isMobile ? [20, 20] : [50, 50];
-      map.fitBounds(bounds, { padding: padding });
+      try {
+        // Ensure bounds is converted to a LatLngBounds object
+        const llBounds = L.latLngBounds(bounds);
+        map.fitBounds(llBounds, { padding: padding });
+      } catch (e) {
+        // Fallback: try to flatten nested arrays (e.g., polygon rings)
+        const flattened = bounds.flat(Infinity).reduce((acc, val, idx, arr) => {
+          // reconstruct pairs
+          if (idx % 2 === 0 && idx + 1 < arr.length) acc.push([arr[idx], arr[idx+1]]);
+          return acc;
+        }, []);
+        if (flattened.length) {
+          map.fitBounds(L.latLngBounds(flattened), { padding: padding });
+        }
+      }
     }
   }, [bounds, map]);
   return null;

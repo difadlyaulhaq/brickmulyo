@@ -1,52 +1,262 @@
 [
-  {
-    "id": 1,
-    "nama": "Bata Merah Press",
-    "lat": -7.3621,
-    "lng": 111.0351,
-    "wa": "081234567890",
-    "foto": "/Batu-bata-background.png",
-    "price": "Rp 850/biji",
-    "desc": "Kualitas premium, permukaan halus, presisi tinggi. Cocok untuk dinding ekspos."
-  },
-  {
-    "id": 2,
-    "nama": "Bata Merah Biasa",
-    "lat": -7.3618,
-    "lng": 111.0355,
-    "wa": "081298765432",
-    "foto": "/Batu-bata-background.png",
-    "price": "Rp 650/biji",
-    "desc": "Standar konstruksi umum, kuat dan ekonomis untuk dinding plesteran."
-  },
-  {
-    "id": 3,
-    "nama": "Bata Ringan",
-    "lat": -7.3625,
-    "lng": 111.0348,
-    "wa": "081212345678",
-    "foto": "/Batu-bata-background.png",
-    "price": "Rp 9.500/biji",
-    "desc": "Bobot ringan, pengerjaan cepat, dan insulasi panas yang baik."
-  },
-  {
-    "id": 4,
-    "nama": "Bata Expose",
-    "lat": -7.3623,
-    "lng": 111.0349,
-    "wa": "081276543210",
-    "foto": "/Batu-bata-background.png",
-    "price": "Rp 1.200/biji",
-    "desc": "Estetik tampak natural dengan tekstur unik untuk desain industrial."
-  },
-  {
-    "id": 5,
-    "nama": "Topi",
-    "lat": -7.45542174931561,
-    "lng": 111.08882209545796,
-    "wa": "085117609645",
-    "foto": "/Figure_1.png",
-    "price": "Rp 123/biji",
-    "desc": "Estetik tampak natural dengan tekstur unik untuk desain industrial."
-  }
+    {
+        "nama": "Ibu Sri Lestari",
+        "wa": "085235368001",
+        "foto": "/bata1.jpeg",
+        "price": "Rp 550.000/1000 pcs",
+        "desc": "Komposisi bata yang lebih kuat daripada bahan lain",
+        "lat": -7.454199,
+        "lng": 111.085199,
+        "id": 19
+    },
+    {
+        "nama": "Pak Joko",
+        "wa": "085385443333",
+        "foto": "/bata2.jpeg",
+        "price": "Rp 550.000/1000 pcs",
+        "desc": "Standar konstruksi umum",
+        "lat": -7.454512,
+        "lng": 111.084327,
+        "id": 20
+    },
+    {
+        "nama": "Ibu Sugiyarti",
+        "wa": "089523296237",
+        "foto": "/bata3.jpeg",
+        "price": "Rp 540.000/1000 pcs",
+        "desc": "Standar konstruksi umum",
+        "lat": -7.452633,
+        "lng": 111.084203,
+        "id": 21
+    },
+    {
+        "nama": "Pak Karman",
+        "wa": "085822707256",
+        "foto": "/bata4.jpeg",
+        "price": "Rp 530.000/1000 pcs",
+        "desc": "Standar konstruksi umum",
+        "lat": -7.453715,
+        "lng": 111.08502,
+        "id": 22
+    },
+    {
+        "nama": "Pak Suryo",
+        "wa": "085877230593",
+        "foto": "/bata5.jpeg",
+        "price": "Rp 550.000/1000 pcs",
+        "desc": "Bata lebih tebal dan kualitas lebih baik dan kuat",
+        "lat": -7.453292,
+        "lng": 111.085523,
+        "id": 23
+    },
+    {
+        "nama": "Pak Suroto",
+        "wa": "088902903778",
+        "foto": "/bata6.jpeg",
+        "price": "Rp 580.000/1000 pcs",
+        "desc": "Warna lebih merah, bahannya tebal, kokoh, dominan semen, presisi",
+        "lat": -7.448574,
+        "lng": 111.09078,
+        "id": 24
+    },
+    {
+        "nama": "Pak Sularto",
+        "wa": "085172336207",
+        "foto": "/bata7.jpeg",
+        "price": "Rp 530.000/1000 pcs",
+        "desc": "Kokoh, kuat, lebih halus permukaan, presisi",
+        "lat": -7.447664,
+        "lng": 111.090658,
+        "id": 25
+    },
+    {
+        "nama": "Pak Ginarto",
+        "wa": "082227137622",
+        "foto": "/bata8.jpeg",
+        "price": "Rp 500.000/1000 pcs",
+        "desc": "Lebih merah, kokoh, tergantung tanah, presisi",
+        "lat": -7.447899,
+        "lng": 111.090454,
+        "id": 26
+    },
+    {
+        "nama": "Pak Daryanto",
+        "wa": "082324990589",
+        "foto": "/bata9.jpeg",
+        "price": "Rp 520.000/1000 pcs",
+        "desc": "Standar konstruksi umum",
+        "lat": -7.454679,
+        "lng": 111.084923,
+        "id": 27
+    },
+    {
+        "nama": "Ibu Nurul",
+        "wa": "081215876052",
+        "foto": "/bata10.jpeg",
+        "price": "Rp 550.000/1000 pcs",
+        "desc": "Bentuk bata lebih presisi",
+        "lat": -7.454537,
+        "lng": 111.084326,
+        "id": 28
+    },
+    {
+        "nama": "Ibu Riska",
+        "wa": "083156626834",
+        "foto": "/bata11.jpeg",
+        "price": "Rp 520.000/1000 pcs",
+        "desc": "Warna bata lebih merah",
+        "lat": -7.453665,
+        "lng": 111.084724,
+        "id": 29
+    },
+    {
+        "nama": "Ibu Parmi",
+        "wa": "081216548002",
+        "foto": "/bata12.jpeg",
+        "price": "Rp 530.000/1000 pcs",
+        "desc": "Standar konstruksi umum",
+        "lat": -7.452758,
+        "lng": 111.08462,
+        "id": 30
+    },
+    {
+        "nama": "Ibu Ari",
+        "wa": "088226368708",
+        "foto": "/bata13.jpeg",
+        "price": "Rp 540.000/1000 pcs",
+        "desc": "Kualitas bata yang kokoh",
+        "lat": -7.455498,
+        "lng": 111.086053,
+        "id": 31
+    },
+    {
+        "nama": "Ibu Sri Lestari",
+        "wa": "085235368001",
+        "foto": "/bata1.jpeg",
+        "price": "Rp 550.000/1000 pcs",
+        "desc": "Komposisi bata yang lebih kuat daripada bahan lain",
+        "lat": -7.454199,
+        "lng": 111.085199,
+        "id": 19
+    },
+    {
+        "nama": "Pak Joko",
+        "wa": "085385443333",
+        "foto": "/bata2.jpeg",
+        "price": "Rp 550.000/1000 pcs",
+        "desc": "Standar konstruksi umum",
+        "lat": -7.454512,
+        "lng": 111.084327,
+        "id": 20
+    },
+    {
+        "nama": "Ibu Sugiyarti",
+        "wa": "089523296237",
+        "foto": "/bata3.jpeg",
+        "price": "Rp 540.000/1000 pcs",
+        "desc": "Standar konstruksi umum",
+        "lat": -7.452633,
+        "lng": 111.084203,
+        "id": 21
+    },
+    {
+        "nama": "Pak Karman",
+        "wa": "085822707256",
+        "foto": "/bata4.jpeg",
+        "price": "Rp 530.000/1000 pcs",
+        "desc": "Standar konstruksi umum",
+        "lat": -7.453715,
+        "lng": 111.08502,
+        "id": 22
+    },
+    {
+        "nama": "Pak Suryo",
+        "wa": "085877230593",
+        "foto": "/bata5.jpeg",
+        "price": "Rp 550.000/1000 pcs",
+        "desc": "Bata lebih tebal dan kualitas lebih baik dan kuat",
+        "lat": -7.453292,
+        "lng": 111.085523,
+        "id": 23
+    },
+    {
+        "nama": "Pak Suroto",
+        "wa": "088902903778",
+        "foto": "/bata6.jpeg",
+        "price": "Rp 580.000/1000 pcs",
+        "desc": "Warna lebih merah, bahannya tebal, kokoh, dominan semen, presisi",
+        "lat": -7.448574,
+        "lng": 111.09078,
+        "id": 24
+    },
+    {
+        "nama": "Pak Sularto",
+        "wa": "085172336207",
+        "foto": "/bata7.jpeg",
+        "price": "Rp 530.000/1000 pcs",
+        "desc": "Kokoh, kuat, lebih halus permukaan, presisi",
+        "lat": -7.447664,
+        "lng": 111.090658,
+        "id": 25
+    },
+    {
+        "nama": "Pak Ginarto",
+        "wa": "082227137622",
+        "foto": "/bata8.jpeg",
+        "price": "Rp 500.000/1000 pcs",
+        "desc": "Lebih merah, kokoh, tergantung tanah, presisi",
+        "lat": -7.447899,
+        "lng": 111.090454,
+        "id": 26
+    },
+    {
+        "nama": "Pak Daryanto",
+        "wa": "082324990589",
+        "foto": "/bata9.jpeg",
+        "price": "Rp 520.000/1000 pcs",
+        "desc": "Standar konstruksi umum",
+        "lat": -7.454679,
+        "lng": 111.084923,
+        "id": 27
+    },
+    {
+        "nama": "Ibu Nurul",
+        "wa": "081215876052",
+        "foto": "/bata10.jpeg",
+        "price": "Rp 550.000/1000 pcs",
+        "desc": "Bentuk bata lebih presisi",
+        "lat": -7.454537,
+        "lng": 111.084326,
+        "id": 28
+    },
+    {
+        "nama": "Ibu Riska",
+        "wa": "083156626834",
+        "foto": "/bata11.jpeg",
+        "price": "Rp 520.000/1000 pcs",
+        "desc": "Warna bata lebih merah",
+        "lat": -7.453665,
+        "lng": 111.084724,
+        "id": 29
+    },
+    {
+        "nama": "Ibu Parmi",
+        "wa": "081216548002",
+        "foto": "/bata12.jpeg",
+        "price": "Rp 530.000/1000 pcs",
+        "desc": "Standar konstruksi umum",
+        "lat": -7.452758,
+        "lng": 111.08462,
+        "id": 30
+    },
+    {
+        "nama": "Ibu Ari",
+        "wa": "088226368708",
+        "foto": "/bata13.jpeg",
+        "price": "Rp 540.000/1000 pcs",
+        "desc": "Kualitas bata yang kokoh",
+        "lat": -7.455498,
+        "lng": 111.086053,
+        "id": 31
+    }
 ]
