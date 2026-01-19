@@ -1,13 +1,52 @@
 [
   {
     "id": 1,
-    "nama": "Pabrik Bata Merah Brick Mulyo",
-    "pemilik": "Bapak Sutrisno",
-    "lat": -7.362,
-    "lng": 111.035,
-    "wa": "6281234567890",
-    "alamat": "Dusun Srimulyo, Gondang, Sragen",
-    "foto": "https://images.unsplash.com/photo-1590859808308-3d2d9c515b1a?w=400&h=300&fit=crop",
-    "desc": "Produsen bata merah berkualitas tinggi, bakar kayu, ukuran presisi."
+    "nama": "Bata Merah Press",
+    "lat": -7.3621,
+    "lng": 111.0351,
+    "wa": "081234567890",
+    "foto": "/Batu-bata-background.png",
+    "price": "Rp 850/biji",
+    "desc": "Kualitas premium, permukaan halus, presisi tinggi. Cocok untuk dinding ekspos."
+  },
+  {
+    "id": 2,
+    "nama": "Bata Merah Biasa",
+    "lat": -7.3618,
+    "lng": 111.0355,
+    "wa": "081298765432",
+    "foto": "/Batu-bata-background.png",
+    "price": "Rp 650/biji",
+    "desc": "Standar konstruksi umum, kuat dan ekonomis untuk dinding plesteran."
+  },
+  {
+    "id": 3,
+    "nama": "Bata Ringan",
+    "lat": -7.3625,
+    "lng": 111.0348,
+    "wa": "081212345678",
+    "foto": "/Batu-bata-background.png",
+    "price": "Rp 9.500/biji",
+    "desc": "Bobot ringan, pengerjaan cepat, dan insulasi panas yang baik."
+  },
+  {
+    "id": 4,
+    "nama": "Bata Expose",
+    "lat": -7.3623,
+    "lng": 111.0349,
+    "wa": "081276543210",
+    "foto": "/Batu-bata-background.png",
+    "price": "Rp 1.200/biji",
+    "desc": "Estetik tampak natural dengan tekstur unik untuk desain industrial."
+  },
+  {
+    "id": 5,
+    "nama": "Topi",
+    "lat": -7.45542174931561,
+    "lng": 111.08882209545796,
+    "wa": "085117609645",
+    "foto": "/Figure_1.png",
+    "price": "Rp 123/biji",
+    "desc": "Estetik tampak natural dengan tekstur unik untuk desain industrial."
   }
 ]

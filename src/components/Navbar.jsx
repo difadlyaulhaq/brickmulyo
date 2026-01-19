@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Phone, Menu, X, Home, Package, Map as MapIcon, Info } from 'lucide-react';
 
-const Navbar = () => {
+const Navbar = ({ setView, mode, setMode }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -17,10 +17,19 @@ const Navbar = () => {
     { name: 'Beranda', id: 'home', icon: Home },
     { name: 'Produk', id: 'products', icon: Package },
     { name: 'Peta Lokasi', id: 'map', icon: MapIcon },
+    { name: 'Tentang Kami', id: 'about', icon: Info },
   ];
 
   const scrollToSection = (id) => {
     setIsMobileMenuOpen(false);
+    if (id === 'about' && typeof setView === 'function') {
+      setView('aboutPage');
+      return;
+    }
+    if (id === 'products' && typeof setView === 'function') {
+      setView('productsPage');
+      return;
+    }
     const element = document.getElementById(id);
     if (element) {
       // Offset for fixed header
@@ -32,6 +41,21 @@ const Navbar = () => {
         top: offsetPosition,
         behavior: 'smooth'
       });
+    } else if (typeof setView === 'function') {
+      // If target section not found (e.g. we're on About page), switch to landing
+      // then try to scroll after render.
+      setView('landing');
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) {
+          const headerOffset = 100;
+          const elementPosition = el.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        } else if (id === 'home') {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }, 120);
     } else if (id === 'home') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -61,7 +85,7 @@ const Navbar = () => {
                   Brick<span className="text-red-600">Mulyo</span>
                 </h1>
                 <p className={`text-[9px] md:text-[10px] font-medium tracking-widest uppercase transition-colors duration-300 ${isScrolled ? 'text-slate-400' : 'text-slate-600'}`}>
-                  Pabrik Bata Sragen
+                  Batu Bata Srimulyo
                 </p>
               </div>
             </div>
@@ -139,6 +163,21 @@ const Navbar = () => {
           Hubungi Kami
         </a>
       </div>
+      {/* Mode toggle (user/dev) - fixed bottom-right */}
+      {typeof setMode === 'function' && (
+        <div className="fixed bottom-4 right-4 z-50">
+          <button
+            onClick={() => setMode(mode === 'dev' ? 'user' : 'dev')}
+            className="group relative bg-slate-800 text-white w-12 h-12 md:w-14 md:h-14 rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition"
+            aria-label="Toggle mode"
+          >
+            <span className="text-sm font-bold">{mode === 'dev' ? 'DEV' : 'USER'}</span>
+            <span className="absolute -right-14 top-1/2 -translate-y-1/2 bg-slate-900 text-white px-3 py-1 rounded-lg text-xs opacity-0 group-hover:opacity-100 transition pointer-events-none">
+              {mode === 'dev' ? 'Switch to User' : 'Switch to Dev'}
+            </span>
+          </button>
+        </div>
+      )}
     </>
   );
 };

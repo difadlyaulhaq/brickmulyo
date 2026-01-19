@@ -9,7 +9,7 @@ const Overlay = () => {
         {/* Main Title */}
         <div className="relative inline-block mt-4">
           <h1 className="text-2xl md:text-5xl font-black text-yellow-400 tracking-tighter uppercase drop-shadow-[0_4px_4px_rgba(0,0,0,1)]">
-            Peta Persebaran UMKM
+            PETA PERSEBARAN
           </h1>
           <div className="h-1 w-full bg-yellow-400 mt-1 shadow-[0_2px_10px_rgba(250,204,21,0.5)]"></div>
         </div>
@@ -27,7 +27,7 @@ const Overlay = () => {
           <div className="bg-black/70 backdrop-blur-md p-4 border-l-[6px] border-yellow-400 pointer-events-auto max-w-sm shadow-2xl transform transition hover:scale-[1.02]">
             <span className="bg-white text-black text-[10px] font-black px-3 py-1 inline-block mb-3 tracking-tighter">INTRO.</span>
             <p className="text-[11px] md:text-xs leading-relaxed text-white font-medium">
-              Dusun Srimulyo merupakan salah satu daerah dengan pelaku UMKM batu bata yang cukup banyak. Jenis UMKM ini meliputi usaha produksi bata merah press dan bakar kayu yang menjadi penopang ekonomi utama warga desa.
+              Desa Srimulyo merupakan salah satu daerah dengan pelaku UMKM batu bata yang cukup banyak. Jenis UMKM ini meliputi usaha produksi bata merah press dan bakar kayu yang menjadi penopang ekonomi utama warga desa.
             </p>
           </div>
 

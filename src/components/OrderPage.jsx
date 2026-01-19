@@ -152,7 +152,7 @@ Mohon info ketersediaan dan pembayaran. Terima kasih.`;
                   className="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-red-500 outline-none text-slate-800 font-bold text-lg"
                 />
                 {quantity >= 1000 && (
-                  <p className="text-xs text-green-600 mt-2 flex items-center gap-1">
+                  <p className="text-xs text-red-600 mt-2 flex items-center gap-1">
                     <CheckCircle size={12} /> Memenuhi syarat gratis ongkir area lokal
                   </p>
                 )}
@@ -299,7 +299,7 @@ Mohon info ketersediaan dan pembayaran. Terima kasih.`;
                 <div className="space-y-2 pb-4 border-b border-slate-100 text-sm">
                   <div className="flex justify-between">
                     <span className="text-slate-500">Ongkos Kirim</span>
-                    <span className={`font-medium ${shippingCost === 0 ? 'text-green-600' : 'text-slate-800'}`}>
+                    <span className={`font-medium ${shippingCost === 0 ? 'text-red-600' : 'text-slate-800'}`}>
                       {shippingCost === 0 ? 'GRATIS' : formatCurrency(shippingCost)}
                     </span>
                   </div>
@@ -322,7 +322,7 @@ Mohon info ketersediaan dan pembayaran. Terima kasih.`;
 
                 <button 
                   onClick={handleSubmit}
-                  className="w-full bg-green-600 hover:bg-green-700 text-white py-4 rounded-xl font-bold shadow-lg hover:shadow-green-500/30 transition flex items-center justify-center gap-2"
+                  className="w-full bg-gradient-to-r from-red-600 to-red-700 text-white py-4 rounded-xl font-bold shadow-lg hover:shadow-red-500/30 transition flex items-center justify-center gap-2"
                 >
                   <Phone size={20} />
                   Pesan via WhatsApp
@@ -360,7 +360,7 @@ Mohon info ketersediaan dan pembayaran. Terima kasih.`;
           </div>
           <button 
             onClick={handleSubmit}
-            className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-bold shadow-lg flex items-center gap-2 text-sm"
+            className="bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-xl font-bold shadow-lg flex items-center gap-2 text-sm"
           >
             <Phone size={18} />
             Pesan Sekarang
