@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { MapPin, Phone, Package, Truck, Shield, Star, Award, ChevronRight, Check, Home } from 'lucide-react';
 import Map from './components/Map';
 import Navbar from './components/Navbar';
@@ -7,49 +7,28 @@ import OrderFlow from './components/OrderFlow';
 import OrderPage from './components/OrderPage';
 import ProductsPage from './pages/ProductsPage';
 import Footer from './components/Footer';
+import umkmData from './data/umkm.json';
 
 export default function BrickMulyoLanding() {
-  const [showFloating, setShowFloating] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [view, setView] = useState('landing');
-  const [mode, setMode] = useState(() => {
-    try { return localStorage.getItem('mode') || 'user'; } catch { return 'user'; }
-  });
   
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowFloating(window.scrollY > 500);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
-    const products = [
-      {
-        name: 'Bata Merah Press',
-        price: 'Rp 850/biji',
-        desc: 'Kualitas premium, permukaan halus, presisi tinggi. Cocok untuk dinding ekspos.',
-        image: '/Batu-bata-background.png'
-      },
-      {
-        name: 'Bata Merah Biasa',
-        price: 'Rp 650/biji',
-        desc: 'Standar konstruksi umum, kuat dan ekonomis untuk dinding plesteran.',
-        image: '/Batu-bata-background.png'
-      },
-      {
-        name: 'Bata Ringan',
-        price: 'Rp 9.500/biji',
-        desc: 'Bobot ringan, pengerjaan cepat, dan insulasi panas yang baik.',
-        image: '/Batu-bata-background.png'
-      },
-      {
-        name: 'Bata Expose',
-        price: 'Rp 1.200/biji',
-        desc: 'Estetik tampak natural dengan tekstur unik untuk desain industrial.',
-        image: '/Batu-bata-background.png'
-      },
-    ];
+    const products = useMemo(() => {
+      // pick 4 random unique entries from umkmData and map to product shape
+      const arr = Array.isArray(umkmData) ? [...umkmData] : [];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr.slice(0, 4).map(u => ({
+        name: u.nama || 'UMKM',
+        price: u.price || 'Harga N/A',
+        desc: u.desc || '',
+        image: u.foto || '/Batu-bata-background.png',
+        wa: u.wa || ''
+      }));
+    }, []);
   const features = [
     { icon: Shield, title: 'Kualitas Terjamin', desc: 'Bata dari tanah liat pilihan' },
     { icon: Truck, title: 'Antar Gratis', desc: 'Area Sragen & sekitar' },
@@ -64,7 +43,7 @@ export default function BrickMulyoLanding() {
   if (view === 'aboutPage') {
     return (
       <div className="min-h-screen bg-slate-50 font-sans overflow-x-hidden">
-        <Navbar setView={setView} mode={mode} setMode={setMode} />
+        <Navbar setView={setView} />
         <main className="pt-28">
           <About setView={setView} />
         </main>
@@ -76,9 +55,9 @@ export default function BrickMulyoLanding() {
   if (view === 'productsPage') {
     return (
       <div className="min-h-screen bg-slate-50 font-sans overflow-x-hidden">
-        <Navbar setView={setView} mode={mode} setMode={setMode} />
+        <Navbar setView={setView} />
         <main className="pt-28">
-          <ProductsPage mode={mode} />
+          <ProductsPage />
         </main>
         <Footer />
       </div>
@@ -99,43 +78,8 @@ export default function BrickMulyoLanding() {
         />
       </div>
 
-      {/* Floating Action Buttons */}
-      {showFloating && (
-        <div className="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-40 flex flex-col gap-3">
-          <button 
-            onClick={() => setView('productsPage')}
-            className="group relative bg-gradient-to-r from-red-600 to-red-700 text-white w-12 h-12 md:w-14 md:h-14 rounded-full shadow-2xl hover:shadow-red-500/50 transition transform hover:scale-110 flex items-center justify-center"
-          >
-            <Package size={20} className="md:w-6 md:h-6" />
-            <span className="absolute right-14 md:right-16 bg-slate-800 text-white px-3 py-1.5 md:px-4 md:py-2 rounded-lg text-xs md:text-sm font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition pointer-events-none">
-              Lihat Produk
-            </span>
-          </button>
-          
-          <button 
-            onClick={() => document.getElementById('map')?.scrollIntoView({ behavior: 'smooth' })}
-            className="group relative bg-gradient-to-r from-orange-500 to-orange-600 text-white w-12 h-12 md:w-14 md:h-14 rounded-full shadow-2xl hover:shadow-orange-500/50 transition transform hover:scale-110 flex items-center justify-center"
-          >
-            <MapPin size={20} className="md:w-6 md:h-6" />
-            <span className="absolute right-14 md:right-16 bg-slate-800 text-white px-3 py-1.5 md:px-4 md:py-2 rounded-lg text-xs md:text-sm font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition pointer-events-none">
-              Cek Area
-            </span>
-          </button>
-          
-          <a 
-            href="https://wa.me/62812345678?text=Halo%20BrickMulyo,%20saya%20mau%20pesan%20bata"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative bg-gradient-to-r from-red-600 to-red-700 text-white w-12 h-12 md:w-14 md:h-14 rounded-full shadow-2xl hover:shadow-red-500/50 transition transform hover:scale-110 flex items-center justify-center animate-pulse"
-          >
-            <Phone size={20} className="md:w-6 md:h-6" />
-            <span className="absolute right-14 md:right-16 bg-slate-800 text-white px-3 py-1.5 md:px-4 md:py-2 rounded-lg text-xs md:text-sm font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition pointer-events-none">
-              Chat WA
-            </span>
-          </a>
-        </div>
-      )}
-      <Navbar setView={setView} mode={mode} setMode={setMode} />
+      {/* Floating action buttons removed */}
+      <Navbar setView={setView} />
 
       {/* Hero Section (updated to match attachments) */}
       <section id="home" className="relative pt-24 md:pt-28 lg:pt-32 pb-8 px-4">
@@ -166,6 +110,23 @@ export default function BrickMulyoLanding() {
       {/* Potensi Lokal removed per request (gallery and images eliminated) */}
 
       {/* Why Choose Us Section removed */}
+
+      {/* Map Coverage Dashboard */}
+      <section id="map" className="py-16 bg-slate-900 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h3 className="text-3xl lg:text-5xl font-bold text-white mb-4">Peta Digital</h3>
+            <p className="text-slate-400 max-w-2xl mx-auto">Visualisasi sebaran lokasi pengrajin batu bata merah di wilayah Desa Srimulyo</p>
+          </div>
+          
+          {/* Main Map Container */}
+          <div className="h-[400px] sm:h-[500px] md:h-[700px] w-full rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] border-4 border-slate-800 relative z-0 mb-12">
+             <Map />
+          </div>
+
+          {/* Coverage details removed per request */}
+        </div>
+      </section>
 
       {/* Products */}
       <section id="products" className="py-16 lg:py-24 px-4 bg-white relative">
@@ -277,22 +238,7 @@ export default function BrickMulyoLanding() {
 
       {/* Gallery Section removed per request */}
 
-      {/* Map Coverage Dashboard */}
-      <section id="map" className="py-16 bg-slate-900 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h3 className="text-3xl lg:text-5xl font-bold text-white mb-4">Peta Digital</h3>
-            <p className="text-slate-400 max-w-2xl mx-auto">Visualisasi sebaran lokasi pengrajin batu bata merah di wilayah Desa Srimulyo</p>
-          </div>
-          
-          {/* Main Map Container */}
-          <div className="h-[400px] sm:h-[500px] md:h-[700px] w-full rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] border-4 border-slate-800 relative z-0 mb-12">
-             <Map />
-          </div>
-
-          {/* Coverage details removed per request */}
-        </div>
-      </section>
+      {/* Map section moved above products */}
 
       {/* CTA Section removed per request */}
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Phone, Menu, X, Home, Package, Map as MapIcon, Info } from 'lucide-react';
 
-const Navbar = ({ setView, mode, setMode }) => {
+const Navbar = ({ setView }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -163,21 +163,7 @@ const Navbar = ({ setView, mode, setMode }) => {
           Hubungi Kami
         </a>
       </div>
-      {/* Mode toggle (user/dev) - fixed bottom-right */}
-      {typeof setMode === 'function' && (
-        <div className="fixed bottom-4 right-4 z-50">
-          <button
-            onClick={() => setMode(mode === 'dev' ? 'user' : 'dev')}
-            className="group relative bg-slate-800 text-white w-12 h-12 md:w-14 md:h-14 rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition"
-            aria-label="Toggle mode"
-          >
-            <span className="text-sm font-bold">{mode === 'dev' ? 'DEV' : 'USER'}</span>
-            <span className="absolute -right-14 top-1/2 -translate-y-1/2 bg-slate-900 text-white px-3 py-1 rounded-lg text-xs opacity-0 group-hover:opacity-100 transition pointer-events-none">
-              {mode === 'dev' ? 'Switch to User' : 'Switch to Dev'}
-            </span>
-          </button>
-        </div>
-      )}
+      
     </>
   );
 };
