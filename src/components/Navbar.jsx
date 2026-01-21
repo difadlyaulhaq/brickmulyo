@@ -108,20 +108,18 @@ const Navbar = ({ setView }) => {
               ))}
             </div>
 
-            {/* CTA Button */}
+            {/* CTA Button (logo + text) */}
             <div className="hidden md:flex items-center">
-              <a 
-                href="https://wa.me/62812345678?text=Halo%20Brick%20Mulyo,%20saya%20tertarik%20dengan%20produk%20Anda"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="relative group overflow-hidden bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-2.5 rounded-full font-bold shadow-[0_0_20px_rgba(220,38,38,0.3)] hover:shadow-[0_0_30px_rgba(220,38,38,0.5)] transition-all transform hover:-translate-y-0.5"
+              <button
+                type="button"
+                className="relative group overflow-hidden bg-gradient-to-r from-red-600 to-red-700 text-white px-4 py-2.5 rounded-full font-bold shadow-[0_0_20px_rgba(220,38,38,0.3)] hover:shadow-[0_0_30px_rgba(220,38,38,0.5)] transition-all transform hover:-translate-y-0.5 flex items-center gap-3"
               >
-                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                <span className="relative flex items-center gap-2">
-                  <Phone size={18} />
-                  Hubungi Kami
+                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                <span className="relative flex items-center gap-3">
+                  <img src="/logo.png" alt="KKN 139 UNS" className="h-4 md:h-5 object-contain" />
+                  <span className="text-sm md:text-base font-bold">KKN 139 UNS</span>
                 </span>
-              </a>
+              </button>
             </div>
 
             {/* Mobile Menu Button */}
@@ -153,15 +151,13 @@ const Navbar = ({ setView }) => {
             {link.name}
           </button>
         ))}
-        <a 
-          href="https://wa.me/62812345678?text=Halo%20Brick%20Mulyo"
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          type="button"
           className="bg-red-600 text-white px-8 py-3 rounded-full font-bold text-xl shadow-xl flex items-center gap-3"
         >
-          <Phone size={24} />
-          Hubungi Kami
-        </a>
+          <img src="/logo.png" alt="KKN 139 UNS" className="h-5 object-contain" />
+          <span className="text-sm font-bold">KKN 139 UNS</span>
+        </button>
       </div>
       
     </>

@@ -171,7 +171,7 @@ export default function BrickMulyoLanding() {
                 
                 <div className="p-6 lg:p-8 flex-1 flex flex-col">
                   <h4 className="text-xl lg:text-2xl font-bold text-slate-800 mb-2">{product.name}</h4>
-                  <p className="text-3xl lg:text-4xl font-bold text-red-600 mb-3">{product.price}</p>
+                  <p className="text-2xl md:text-3xl lg:text-3xl font-bold text-red-600 mb-3 whitespace-normal break-words leading-snug">{product.price}</p>
                   <p className="text-slate-600 text-sm mb-6 flex-1">{product.desc}</p>
                   
                   <div className="space-y-2 mb-6">
@@ -219,16 +219,18 @@ export default function BrickMulyoLanding() {
           
           <div className="grid md:grid-cols-4 gap-8">
             {[
-              { step: '01', title: 'Pilih Produk', desc: 'Tentukan jenis dan jumlah bata yang Anda butuhkan sesuai proyek.' },
-              { step: '02', title: 'Konsultasi WA', desc: 'Hubungi admin kami untuk cek ketersediaan stok dan jadwal kirim.' },
-              { step: '03', title: 'Konfirmasi Lokasi', desc: 'Kirimkan lokasi pengiriman untuk menghitung estimasi waktu tiba.' },
-              { step: '04', title: 'Bata Dikirim', desc: 'Pesanan akan diantar menggunakan truk armada kami sendiri.' },
+              { step: '01', title: 'Pilih Produk', desc: 'Telusuri katalog dan pilih produk yang cocok — website hanya sebagai katalog.' },
+              { step: '02', title: 'Hubungi via WA', desc: 'Klik tombol WhatsApp untuk menghubungi penjual dan menanyakan stok, harga, dan ketentuan.' },
+              { step: '03', title: 'Negosiasi & Konfirmasi', desc: 'Semua negosiasi harga, konfirmasi stok, dan metode pembayaran diselesaikan melalui chat WA.' },
+              { step: '04', title: 'Pengiriman & Selesai', desc: 'Penjual mengatur pengiriman; Anda menerima barang sesuai kesepakatan.' },
             ].map((s, i) => (
               <div key={i} className="relative p-8 rounded-3xl bg-slate-50 border border-slate-100 group hover:bg-red-600 transition duration-500 overflow-hidden">
                 <span className="text-6xl font-black text-slate-200 absolute top-4 right-4 group-hover:text-red-500/50 transition duration-500">{s.step}</span>
                 <div className="relative z-10 pt-12">
                   <h4 className="text-xl font-bold text-slate-800 mb-3 group-hover:text-white transition duration-500">{s.title}</h4>
                   <p className="text-sm text-slate-600 group-hover:text-red-50 transition duration-500 leading-relaxed">{s.desc}</p>
+
+                  {/* No direct CTA on cards — users contact sellers from product cards */}
                 </div>
               </div>
             ))}

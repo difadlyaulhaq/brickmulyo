@@ -123,7 +123,7 @@ function formatWhatsAppLink(cp) {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
           {paginatedProducts.map((p, i) => {
             const name = p.name || p.nama || 'Produk';
             const imgSrc = p.image || p.foto || '/Batu-bata-background.png';
@@ -132,18 +132,18 @@ function formatWhatsAppLink(cp) {
             const cpNum = p.cp || p.wa || p.WA || '';
 
             return (
-            <article key={i} className="bg-white bg-opacity-95 backdrop-blur-sm rounded-2xl shadow-md overflow-hidden border border-slate-100 group relative">
+            <article key={i} className="bg-white bg-opacity-95 backdrop-blur-sm rounded-2xl shadow-md overflow-hidden border border-slate-100 group relative flex flex-col h-full">
                 <div className="h-40 w-full relative overflow-hidden">
                 <img src={imgSrc} alt={name} className="w-full h-full object-cover transform group-hover:scale-105 transition duration-500" />
               </div>
-              <div className="p-5">
+              <div className="p-5 flex-1 flex flex-col">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full font-bold">Produk</span>
                 </div>
                 <h3 className="text-lg font-bold text-slate-800 mb-1">{name}</h3>
                 <p className="text-red-600 font-bold text-xl mb-2">{priceText}</p>
                 <p className="text-sm text-slate-700 mb-4 leading-relaxed">{descText}</p>
-                <div className="flex items-center gap-3">
+                <div className="mt-auto flex items-center gap-3">
                   <a
                     href={cpNum ? formatWhatsAppLink(cpNum) : '#'}
                     target="_blank"
