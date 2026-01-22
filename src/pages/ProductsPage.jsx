@@ -13,11 +13,20 @@ function formatWhatsAppLink(cp) {
   if (!cp) return '#';
   const digits = (cp || '').toString().replace(/[^0-9]/g, '');
   if (!digits) return '#';
+
+  const PREFILL = `Permisi, saya mendapat kontak Bapak/Ibu melalui website BrickMulyo. Saya ingin membahas mengenai pemesanan batu bata dengan Anda. Apakah stok untuk saat ini tersedia?`;
+
+  const build = (num) => {
+    const base = `https://wa.me/${num}`;
+    const encoded = encodeURIComponent(PREFILL);
+    return `${base}?text=${encoded}`;
+  };
+
   // common Indonesian numbers: start with 0 or 8, convert to 62
-  if (digits.startsWith('0')) return `https://wa.me/62${digits.slice(1)}`;
-  if (digits.startsWith('8')) return `https://wa.me/62${digits}`;
+  if (digits.startsWith('0')) return build(`62${digits.slice(1)}`);
+  if (digits.startsWith('8')) return build(`62${digits}`);
   // already has country code like 62...
-  return `https://wa.me/${digits}`;
+  return build(digits);
 }
 
   const ProductsPage = ({ onBack }) => {

@@ -82,25 +82,27 @@ export default function BrickMulyoLanding() {
       <Navbar setView={setView} />
 
       {/* Hero Section (updated to match attachments) */}
-      <section id="home" className="relative pt-24 md:pt-28 lg:pt-32 pb-8 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 bg-red-100 text-red-800 px-4 py-2 rounded-full text-sm font-bold mb-4">
+      <section id="home" className="relative pt-24 md:pt-28 lg:pt-32 pb-32 md:pb-36 lg:pb-40 px-4 min-h-[80vh] md:min-h-[90vh] lg:min-h-[95vh]">
+        <div className="max-w-5xl mx-auto text-center px-4">
+          <div className="inline-flex items-center gap-2 bg-red-100 text-red-800 px-4 py-2 rounded-full text-sm font-bold mb-6">
             <Home className="w-4 h-4" />
             <span>Batu Bata Srimulyo</span>
           </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-slate-900 mb-4">
-            Portal UMKM Batu Bata Desa Srimulyo
+
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[72px] font-extrabold leading-[1.02] text-slate-900 mb-6 tracking-tight">
+            <span className="block">Portal UMKM Batu Bata Desa</span>
+            <span className="block">Srimulyo</span>
           </h1>
 
-          <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto mb-6">
+          <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-xl mx-auto mb-8 leading-relaxed">
             Situs khusus untuk pelaku UMKM batu bata di Desa Srimulyo — katalog produk, lokasi pengrajin, dan kontak langsung.
           </p>
 
-          <div className="flex justify-center gap-4 flex-wrap">
-            <button onClick={() => setView('productsPage')} className="bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transition">
+          <div className="flex justify-center gap-4 flex-wrap mt-2">
+            <button onClick={() => setView('productsPage')} className="bg-red-600 text-white px-7 md:px-8 py-3 md:py-4 rounded-full font-semibold shadow-lg hover:shadow-2xl transition transform hover:-translate-y-0.5">
               Jelajah Produk
             </button>
-            <button onClick={() => setView('aboutPage')} className="bg-white text-red-700 px-6 py-3 rounded-full font-semibold border border-red-100 hover:bg-red-50 transition">
+            <button onClick={() => setView('aboutPage')} className="bg-white text-red-700 px-6 py-3 rounded-full font-semibold border border-red-200 hover:bg-red-50 transition">
               Tentang Kami
             </button>
           </div>
