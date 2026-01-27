@@ -31,12 +31,13 @@ function formatWhatsAppLink(cp) {
 
   const ProductsPage = ({ onBack }) => {
   const [filter, setFilter] = useState('all');
+  const [query, setQuery] = useState('');
   const [page, setPage] = useState(1);
   const perPage = 9;
   const [products, setProducts] = useState([]);
 
-  // reset page when filter changes
-  useEffect(() => setPage(1), [filter]);
+  // reset page when filter or query changes
+  useEffect(() => setPage(1), [filter, query]);
 
   // load bundled data only
   useEffect(() => {
@@ -49,7 +50,17 @@ function formatWhatsAppLink(cp) {
   }, []);
 
   const productsFiltered = useMemo(() => {
-    const copy = [...products];
+    let copy = [...products];
+
+    // apply search query (case-insensitive) by product name
+    if (query && query.trim()) {
+      const q = query.trim().toLowerCase();
+      copy = copy.filter((p) => {
+        const name = (p.name || p.nama || '').toString().toLowerCase();
+        return name.includes(q);
+      });
+    }
+
     if (filter === 'low') {
       return copy.sort((a, b) => parsePrice(a.price) - parsePrice(b.price));
     }
@@ -57,7 +68,7 @@ function formatWhatsAppLink(cp) {
       return copy.sort((a, b) => parsePrice(b.price) - parsePrice(a.price));
     }
     return copy;
-  }, [filter, products]);
+  }, [filter, products, query]);
 
   const totalItems = productsFiltered.length;
   const totalPages = Math.max(1, Math.ceil(totalItems / perPage));
@@ -115,19 +126,32 @@ function formatWhatsAppLink(cp) {
           </div>
 
           <div className="filter-card w-full mx-auto mb-6 bg-white bg-opacity-95 backdrop-blur-sm">
-            <div className="filter-row flex items-center justify-between gap-4">
-              <div className="text-sm font-semibold">Filter</div>
-              <div className="w-full sm:w-auto">
-                <label className="sr-only">Filter Produk</label>
-                <select
-                  value={filter}
-                  onChange={(e) => setFilter(e.target.value)}
-                  className="custom-select"
-                >
-                  <option value="all">Semua Produk</option>
-                  <option value="low">Harga Terendah</option>
-                  <option value="high">Harga Tertinggi</option>
-                </select>
+            <div className="filter-row flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="w-full sm:flex-1">
+                <label className="sr-only">Cari Produk</label>
+                <input
+                  type="search"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  placeholder="Cari produk berdasarkan nama..."
+                  className="w-full px-3 py-2 border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-green-300"
+                />
+              </div>
+
+              <div className="flex items-center gap-3 w-full sm:w-auto">
+                <div className="text-sm font-semibold">Filter</div>
+                <div className="w-full sm:w-auto">
+                  <label className="sr-only">Filter Produk</label>
+                  <select
+                    value={filter}
+                    onChange={(e) => setFilter(e.target.value)}
+                    className="custom-select"
+                  >
+                    <option value="all">Semua Produk</option>
+                    <option value="low">Harga Terendah</option>
+                    <option value="high">Harga Tertinggi</option>
+                  </select>
+                </div>
               </div>
             </div>
           </div>
@@ -157,13 +181,15 @@ function formatWhatsAppLink(cp) {
                     href={cpNum ? formatWhatsAppLink(cpNum) : '#'}
                     target="_blank"
                     rel="noreferrer noopener"
-                    className={`flex-1 inline-flex items-center justify-center gap-3 ${cpNum ? 'bg-green-600 hover:bg-green-700 text-white' : 'bg-slate-100 text-slate-500 cursor-not-allowed'} py-2 rounded-full font-semibold`}
+                    className={`flex-1 inline-flex items-center justify-center gap-3 ${cpNum ? 'bg-green-600 hover:bg-green-700 text-white' : 'bg-slate-100 text-slate-500 cursor-not-allowed'} py-2 px-4 rounded-full font-semibold`}
                     aria-label={cpNum ? `Hubungi ${name} via WhatsApp` : 'Nomor belum tersedia'}
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor" aria-hidden>
-                      <path d="M20.52 3.48A11.88 11.88 0 0 0 12.03.01C5.49.01.31 5.2.31 11.75c0 2.07.55 4.03 1.6 5.78L.01 24l6.62-1.72a11.67 11.67 0 0 0 5.4 1.29h.01c6.55 0 11.75-5.19 11.75-11.75 0-3.14-1.23-6.07-3.27-8.04zM12.03 21.5c-1.77 0-3.5-.48-5.01-1.39l-.36-.22-3.93 1.02 1.06-3.83-.23-.38A8.02 8.02 0 0 1 3 11.75c0-4.41 3.59-8 8.03-8 2.14 0 4.15.83 5.66 2.34 1.5 1.5 2.34 3.52 2.34 5.66 0 4.41-3.59 8-8.03 8z" />
-                      <path d="M17.53 14.43c-.29-.15-1.7-.84-1.96-.94-.26-.1-.45-.15-.64.15-.19.29-.73.94-.9 1.13-.16.19-.33.22-.62.07-.29-.15-1.22-.45-2.33-1.44-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.33.43-.5.14-.16.19-.29.29-.48.1-.19.05-.36-.02-.5-.07-.15-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.49l-.55-.01c-.19 0-.5.07-.77.36-.27.29-1.02.99-1.02 2.41 0 1.42 1.05 2.8 1.2 2.99.15.19 2.07 3.2 5.02 4.49 2.95 1.3 2.95.87 3.49.82.54-.06 1.7-.69 1.94-1.36.24-.67.24-1.25.17-1.37-.07-.12-.26-.19-.55-.34z" fill="#fff"/>
-                    </svg>
+                    <span className="flex items-center justify-center w-9 h-9 rounded-full flex-shrink-0 bg-white/10">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor" aria-hidden>
+                        <path d="M20.52 3.48A11.88 11.88 0 0 0 12.03.01C5.49.01.31 5.2.31 11.75c0 2.07.55 4.03 1.6 5.78L.01 24l6.62-1.72a11.67 11.67 0 0 0 5.4 1.29h.01c6.55 0 11.75-5.19 11.75-11.75 0-3.14-1.23-6.07-3.27-8.04zM12.03 21.5c-1.77 0-3.5-.48-5.01-1.39l-.36-.22-3.93 1.02 1.06-3.83-.23-.38A8.02 8.02 0 0 1 3 11.75c0-4.41 3.59-8 8.03-8 2.14 0 4.15.83 5.66 2.34 1.5 1.5 2.34 3.52 2.34 5.66 0 4.41-3.59 8-8.03 8z" />
+                        <path d="M17.53 14.43c-.29-.15-1.7-.84-1.96-.94-.26-.1-.45-.15-.64.15-.19.29-.73.94-.9 1.13-.16.19-.33.22-.62.07-.29-.15-1.22-.45-2.33-1.44-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.33.43-.5.14-.16.19-.29.29-.48.10-.19.05-.36-.02-.5-.07-.15-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.49l-.55-.01c-.19 0-.5.07-.77.36-.27.29-1.02.99-1.02 2.41 0 1.42 1.05 2.8 1.2 2.99.15.19 2.07 3.2 5.02 4.49 2.95 1.3 2.95.87 3.49.82.54-.06 1.7-.69 1.94-1.36.24-.67.24-1.25.17-1.37-.07-.12-.26-.19-.55-.34z" fill="#fff"/>
+                      </svg>
+                    </span>
                     <span>Hubungi via WhatsApp</span>
                   </a>
                 </div>
